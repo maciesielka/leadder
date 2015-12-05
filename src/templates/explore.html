@@ -1,0 +1,9 @@
+<h1>Explore</h1>
+<div class="leaderboards-container">
+    <div class="col-md-4" ng-repeat="leaderboard in vm.leaderboards">
+        <leaderboard leaderboard="leaderboard" button-title="vm.buttonTitle" button-action="vm.joinLeaderboard(leaderboard)"></leaderboard>
+    </div>
+    <div ng-if="vm.leaderboards.length === 0" class="empty-list">
+        No leaderboards exist that you're not a part of.
+    </div>
+</div>

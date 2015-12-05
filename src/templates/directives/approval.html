@@ -1,0 +1,16 @@
+<div class="row approval-container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="info-container col-md-8">
+                <div class="approval-title">{{approval.get("match").get("player1").get("leaderboard").get("name")}}</div>
+                <div class="approval-info">{{approval.get("match").get("reporter").get("user").get("fullName")}} reported that you played and you {{currentUser().id === approval.get("match").get("player1").get("user").id ? "WON" : "LOST"}}</div>
+            </div>
+            <div class="accept-container col-md-2">
+                Accept: <button type="button" class="btn btn-success btn-default btn-circle"><i class="glyphicon glyphicon-ok" ng-click="approvalAction(approval)"></i></button>
+            </div>
+            <div class="decline-container col-md-2">
+                Reject: <button type="button" class="btn btn-danger btn-default btn-circle"><i class="glyphicon glyphicon-remove" ng-click="rejectAction(approval)"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

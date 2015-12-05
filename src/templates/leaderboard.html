@@ -1,0 +1,39 @@
+<h1>{{vm.leaderboard.get("name")}}</h1>
+<div class="popup popup-center" ng-if="vm.showReportBody">
+    <div class="report-score-container panel panel-default popup-center text-center" ng-if="vm.showReportBody">
+        <div class="panel-heading report-score-heading">
+            <span class="panel-heading">Report a Match</span>
+            <i class="fa fa-close pull-right" ng-click="vm.toggleReportBody()"></i>
+        </div>
+        <div class="panel-body"  ng-if="vm.leaderboard.participants.length >= 2">
+            <form ng-submit="vm.reportScore()">
+                <div class="form-group form-inline">
+                    <label for="winner">Winner:</label>
+                    <select ng-model="vm.winner" class="form-control" ng-options="participant as participant.get('user').get('fullName') for participant in vm.leaderboard.participants">
+                        <option disabled value="">--Select a Winner--</option>
+                    </select>
+                </div>
+
+                <div class="form-group form-inline">
+                    <label for="loser">Loser:</label>
+                    <select ng-model="vm.loser" class="form-control" ng-options="participant as participant.get('user').get('fullName') for participant in vm.leaderboard.participants">
+                        <option disabled value="">--Select a Loser--</option>
+                    </select>
+                </div>
+
+                <div class="form-group form-inline">
+                    <button class="btn btn-primary form-control" type="submit">Report Score</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="panel-body" ng-if="vm.leaderboard.participants.length < 2">
+            *Note: At least two people need to be a part of the leaderboard to record a score.
+        </div>
+    </div>
+</div>
+<leaderboard ng-if="vm.leaderboard"
+             leaderboard="vm.leaderboard"
+             button-title="vm.buttonTitle"
+             limit="vm.limit"
+             button-action="vm.toggleReportBody()"></leaderboard>

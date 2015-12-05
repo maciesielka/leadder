@@ -1,0 +1,30 @@
+<h1>Pending Approvals</h1>
+<div class="approvals-container">
+    <div class="row" ng-repeat="approval in vm.pendingApprovals" ng-if="!vm.approvalsLoading">
+        <approval approval="approval" approval-action="vm.approvalResponseAction(approval)"
+                                        reject-action="vm.rejectResponseAction(approval)"></approval>
+    </div>
+
+    <div class="empty-approvals" ng-if="vm.pendingApprovals.length === 0 && !vm.approvalsLoading">
+        No pending match report approvals
+    </div>
+
+    <div class="vertical-center" ng-if="vm.approvalsLoading">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+</div>
+
+<h1>My Leaderboards</h1>
+<div class="leaderboards-container">
+    <div class="col-md-4" ng-repeat="leaderboard in vm.leaderboards">
+        <leaderboard leaderboard="leaderboard" button-title="vm.buttonTitle" button-action="vm.leaveLeaderboard(leaderboard)"></leaderboard>
+    </div>
+
+    <div class="empty-leaderboards" ng-if="vm.leaderboards.length === 0">
+        You're not part of any leaderboard. Check out the <a href="/#/explore">Explore</a> tab to join.
+    </div>
+</div>

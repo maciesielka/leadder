@@ -1,0 +1,71 @@
+<div id="login-container">
+    <div class="container">
+        <div class="row">
+
+            <!-- Branding tagline -->
+            <div class="col-md-6 col-md-offset-1">
+                <h1>Welcome to Leadder</h1>
+                <h4>Never stop pushing yourself to be your best</h4>
+            </div>
+
+            <!-- Login/SignUp panels -->
+            <div class="col-md-4 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Login</div>
+                    <div class="panel-body">
+                        <form ng-submit="vm.login()">
+                            <div ng-if="vm.loginError" class="alert alert-danger" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span>Invalid Login Credentials:</span>
+                                Please try again
+                            </div>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input ng-model="vm.loginUsername" type="text" class="form-control" placeholder="Email or username" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input ng-model="vm.loginPassword" type="password" class="form-control" placeholder="Password" required>
+                            </div>
+                            <button type="submit" class="btn btn-default">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Sign Up</div>
+                    <div class="panel-body">
+                        <form ng-submit="vm.signUp()">
+                            <div ng-if="vm.signUpError" class="alert alert-danger" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span>Error:</span>
+                                Username or email already taken
+                            </div>
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input ng-model="vm.signUpFullName" type="text" class="form-control" placeholder="Full Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input ng-model="vm.signUpUsername" type="text" class="form-control" placeholder="Username" ng-change="vm.fixUsername()" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input ng-model="vm.signUpEmail" type="email" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input ng-model="vm.signUpPassword" type="password" class="form-control" placeholder="Password" required>
+                            </div>
+                            <button type="submit" class="btn btn-default">Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="ranking-container pull-left text-center">
+    <div class="numeric-rank absolute-center vertical-center" ng-class="
+    { increasing: participant.get('increasing') === 'INCREASING',
+      moderate: participant.get('increasing') === 'MODERATE',
+      decreasing: participant.get('increasing') === 'DECREASING' }">{{index}}</div>
+    <div class="rank absolute-center">
+        {{participant.get("ranking")|round}}
+        <img src="/img/increasing-arrow.png" ng-if="participant.get('increasing') === 'INCREASING'" />
+        <img src="/img/decreasing-arrow.png" ng-if="participant.get('increasing') === 'DECREASING'" />
+    </div>
+</div>
+<div class="col-xs-10 personal-container">
+    <div class="icon col-xs-3 vertical-center text-center">
+        <img src="/img/avatar.png" />
+    </div>
+    <div class="name-container vertical-center">
+        <div class="name">{{participant.get("user").get("fullName")}}</div>
+        <div class="username">@{{participant.get("user").get("username")}}</div>
+    </div>
+</div>

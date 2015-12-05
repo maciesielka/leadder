@@ -1,0 +1,33 @@
+<div class="leaderboard panel panel-default">
+    <div class="panel-heading">
+        <a href="/#/leaderboards/{{leaderboard.id}}">{{leaderboard.get("name")}}</a>
+        <div class="pull-right join-leaderboard" ng-click="buttonAction()" ng-if="buttonTitle">
+            <i class="fa fa-mail-forward"></i>&nbsp;{{buttonTitle}}
+        </div>
+    </div>
+    <div class="leaderboard-body" ng-class="{'leaderboard-body-temporary': loading}">
+        <div class="vertical-center">
+            <div class="spinner" ng-if="loading">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+
+        <div class="participants-container">
+            <div class="participant row" ng-repeat="participant in participants">
+                <participant participant="participant" index="$index+1" what="fuck"></participant>
+            </div>
+            <div class="participant row" ng-repeat="extra in extras">
+                <participant participant="extra" index="startingIndex+$index+1"></participant>
+            </div>
+        </div>
+
+        <div class="empty-leaderboard text-center" ng-if="participants.length === 0">
+            <div class="empty-message vertical-center">No participants are available to show</div>
+        </div>
+    </div>
+    <div class="panel-footer">
+
+    </div>
+</div>

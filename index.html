@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html ng-app="leadder">
+    <head ng-app="leadder">
+        <meta charset="utf-8">
+        <title>Leadder</title>
+
+        <link rel="stylesheet" href="./node_modules/normalize-css/normalize.css" />
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="./css/fonts.css" />
+        <link rel="stylesheet" href="./css/styles.css" />
+    </head>
+    <body ng-cloak ng-controller="BodyController as body" ng-class="{'page-background': body.isActive('/login')}">
+        <header ng-cloak id="nav-container" ng-controller="NavController as vm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-1 text-center">
+                        <div class="navbar-header">
+                            <a href="#" class="navbar-brand">
+                                <img class="brand" src="../img/leadder-logo.png" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="nav-username" ng-if="currentUser()">Hi {{currentUser().get("fullName")}}!</div>
+                    </div>
+                    <div class="col-md-4" ng-class="{ hidden: body.isActive('/login')}">
+                        <ul class="nav navbar-nav">
+                            <li ng-class="{ active: body.isActive('/')}">
+                                <a href="/#/">Home</a>
+                            </li>
+                            <li ng-class="{ active: body.isActive('/explore')}">
+                                <a href="/#/explore">Explore</a>
+                            </li>
+                            <li ng-class="{ active: body.isActive('/profile')}">
+                                <a href="/#/profile">Profile</a>
+                            </li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Edit Profile</a></li>
+                                    <li><a href="/#/logout">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="view-container container">
+            <ng-view></ng-view>
+        </div>
+
+        <!-- loading popup -->
+        <div ng-cloak class="popup popup-center" ng-if="rootLoading && !rootError">
+            <div class="spinner-popup-container popup-center">
+                <div class="spinner absolute-spinner">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Popup -->
+        <div ng-cloak class="popup popup-center" ng-if="rootError">
+            <div class="panel panel-default error-popup popup-center">
+                <div class="panel-heading text-center">
+                    ERROR!
+                    <i class="fa fa-close pull-right" ng-click="togglePopup()"></i>
+                </div>
+                <div class="panel-body"><p>{{rootErrorBody.message ? rootErrorBody.message : rootErrorBody}}</p></div>
+            </div>
+        </div>
+
+        <!-- <footer id="page-footer">
+            This was brought to you by Michael Ciesielka for ITP 404
+        </footer> -->
+
+        <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./node_modules/parse/dist/parse-latest.min.js"></script>
+        <script src="./node_modules/angular/angular.min.js"></script>
+        <script src="./node_modules/angular-route/angular-route.min.js"></script>
+        <script src="./src/config.js"></script>
+
+        <script src="./src/main.js"></script>
+
+        <!-- begin filters -->
+        <script src="./src/filters/custom-filters.js"></script>
+        <!-- end filters -->
+
+        <!-- begin controllers -->
+        <script src="./src/controllers/nav-controller.js"></script>
+        <script src="./src/controllers/home-controller.js"></script>
+        <script src="./src/controllers/login-controller.js"></script>
+        <script src="./src/controllers/body-controller.js"></script>
+        <script src="./src/controllers/explore-controller.js"></script>
+        <script src="./src/controllers/leaderboard-controller.js" charset="utf-8"></script>
+        <!-- end controllers -->
+
+        <!-- begin services -->
+        <script src="./src/services/parse-service.js"></script>
+        <!-- end services -->
+
+        <!-- begin directives -->
+        <script src="./src/directives/leaderboard.js"></script>
+        <script src="./src/directives/participant.js"></script>
+        <script src="./src/directives/approval.js"></script>
+        <!-- end directives -->
+    </body>
+</html>
