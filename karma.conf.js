@@ -20,7 +20,6 @@ module.exports = function(config) {
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/parse/dist/parse-latest.js',
-    //   'node_modules/parse-mock/dist/parse-mock.latest.js',
       'src/main.js',
       'src/**/*.js',
       'tests/**/*.spec.js'
