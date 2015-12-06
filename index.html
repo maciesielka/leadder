@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="./css/styles.css" />
     </head>
     <body ng-cloak ng-controller="BodyController as body" ng-class="{'page-background': body.isActive('/login')}">
-        <header ng-cloak id="nav-container" ng-controller="NavController as vm">
+        <header ng-cloak id="nav-container" ng-class="{'header-white': body.isActive('/login')}" ng-controller="NavController as vm">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-1 text-center">

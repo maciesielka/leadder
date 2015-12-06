@@ -24,6 +24,10 @@ body {
     color: white;
 }
 
+#nav-container.header-white {
+    background-color:white;
+}
+
 a {
     text-decoration: none;
     color: inherit;
