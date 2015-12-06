@@ -5,6 +5,7 @@ angular
     .controller("LoginController", function(ParseService, $scope, $location) {
 
         var vm = this;
+        vm.signUpUsername = "";
 
         vm.login = function() {
             vm.loginError = null;
@@ -31,6 +32,6 @@ angular
         };
 
         vm.fixUsername = function() {
-            this.signUpUsername = this.signUpUsername ? this.signUpUsername.replace(/ /g, '') : "";
+            this.signUpUsername = this.signUpUsername ? this.signUpUsername.replace(/[^0-9a-zA-Z]+/g, '') : "";
         };
     });
