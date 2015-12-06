@@ -1,12 +1,13 @@
 <div class="profile-container">
-    <div class="info-container">
-        <div class="row">
-            <div class="name col-md-6 h1">{{vm.user.get("fullName")}}</div>
-            <div class="num-profiles col-md-6 text-right h3">Plays in {{vm.profiles.length}} leaderboard{{vm.profiles.length > 1 ? "s" : ""}}</div>
-        </div>
-        <div class="row">
-            <div class="username col-md-6 h4">@{{vm.user.get("username")}}</div>
-            <div class="num-wins col-md-6 text-right h5">{{vm.numWins}} win{{vm.numWins > 1 ? "s" : ""}}</div>
+    <div class="info-container panel panel-default">
+        <div class="panel-heading">{{vm.user.get("fullName")}} | <span class="username">@{{vm.user.get("username")}}</span></div>
+        <div class="panel-body">
+            <div class="">
+                <div class="num-profiles h4">Plays in {{vm.profiles.length}} leaderboard{{vm.profiles.length !== 1 ? "s" : ""}}</div>
+            </div>
+            <div class="">
+                <div class="num-wins h5">{{vm.numWins}} win{{vm.numWins !== 1 ? "s" : ""}} | {{vm.numLosses}} loss{{vm.numLosses > 1 ? "es" : ""}}</div>
+            </div>
         </div>
     </div>
     <div class="table-fluid panel panel-default">
