@@ -12,9 +12,10 @@ angular
             .when("/logout", {
                 // implicitly describe the controller
                 // to redirect immediately
-                controller: function($location, $rootScope) {
+                controller: function($location, $rootScope, $route) {
                     Parse.User.logOut().then(function(){
                         $location.path("/login");
+                        $route.reload();
                     });
                 },
                 template: "" // blank page

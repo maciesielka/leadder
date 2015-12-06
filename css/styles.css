@@ -42,6 +42,10 @@ a:hover {
     color: white;
 }
 
+#login-container, .approval-container {
+    color: black;
+}
+
 .leaderboard {
     color: black;
 }
