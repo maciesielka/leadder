@@ -27,12 +27,42 @@ angular
         var Approval = Parse.Object.extend("Approval");
         var Match = Parse.Object.extend("Match");
 
-        ParseService.getMyPlayerProfiles = function() {
+        ParseService.getUserPlayerProfiles = function(user) {
             var query = new Parse.Query(PlayerProfile);
             return query
-                    .equalTo("user", currentUser())
+                    .equalTo("user", user)
                     .include(["leaderboard"])
                     .find();
+        };
+
+        ParseService.getMatchesForUser = function(user) {
+            var promise = new Parse.Promise();
+
+            var query = new Parse.Query(Parse.User);
+            ParseService.getUserPlayerProfiles(user).then(function(profiles) {
+                var player1Query = new Parse.Query("Match");
+                player1Query
+                    .containedIn("player1", profiles);
+
+                var player2Query = new Parse.Query("Match");
+                player2Query
+                    .containedIn("player2", profiles);
+
+                return Parse.Query.or(player1Query, player2Query)
+                        .descending("updatedAt")
+                        .include(["player1", "player1.user", "player2", "player2.user", "player1.leaderboard"])
+                        .find();
+            }).then(function(results) {
+                promise.resolve(results);
+            }, function(error) {
+                promise.reject(error);
+            });
+
+            return promise;
+        };
+
+        ParseService.getMyPlayerProfiles = function() {
+            return ParseService.getUserPlayerProfiles(currentUser());
         };
 
         ParseService.getMyLeaderboards = function() {
@@ -78,6 +108,17 @@ angular
             });
         };
 
+        ParseService.addNewLeaderboard = function(name, K) {
+            var leaderboard = new Leaderboard();
+            leaderboard.set({
+                name: name,
+                K: K,
+                admin: Parse.User.current()
+            });
+
+            return leaderboard.save();
+        };
+
         // unsubscribe to leaderboard
         ParseService.removeSelfFromLeaderboard = function(leaderboard) {
             var promise = new Parse.Promise();
@@ -113,6 +154,10 @@ angular
                 ranking: 1400
             });
             return newProfile.save();
+        };
+
+        ParseService.deleteLeaderboard = function(leaderboard) {
+            return leaderboard.destroy();
         };
 
         // report a new match

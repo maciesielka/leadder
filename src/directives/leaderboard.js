@@ -2,7 +2,7 @@
 
 angular
     .module("leadder")
-    .directive("leaderboard", function() {
+    .directive("leaderboard", function(ParseService, $location, $route) {
         return {
             restrict: "E",
             templateUrl: "/src/templates/directives/leaderboard.html",
@@ -10,6 +10,17 @@ angular
                 var currentProfileIndex = -1;
                 $scope.loading = true;
                 $scope.showExtraRow = false;
+
+                $scope.myLeaderboard = ($scope.leaderboard.get("admin").id === Parse.User.current().id);
+
+                $scope.deleteLeaderboard = function() {
+                    ParseService.deleteLeaderboard($scope.leaderboard).then(function() {
+                        $route.reload();
+                    }, function(error) {
+                        console.error(error);
+                    });
+                };
+
                 var relation = $scope.leaderboard.relation("participants");
                 var query = relation.query();
                 query

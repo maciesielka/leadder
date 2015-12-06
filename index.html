@@ -33,7 +33,7 @@
                                 <a href="/#/explore">Explore</a>
                             </li>
                             <li ng-class="{ active: body.isActive('/profile')}">
-                                <a href="/#/profile">Profile</a>
+                                <a href="/#/users/{{currentUser().id}}">Profile</a>
                             </li>
                             <li role="presentation" class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
@@ -65,12 +65,12 @@
 
         <!-- Error Popup -->
         <div ng-cloak class="popup popup-center" ng-if="rootError">
-            <div class="panel panel-default error-popup popup-center">
-                <div class="panel-heading text-center">
+            <div ng-cloak class="panel panel-default error-popup popup-center">
+                <div ng-cloak class="panel-heading text-center">
                     ERROR!
                     <i class="fa fa-close pull-right" ng-click="togglePopup()"></i>
                 </div>
-                <div class="panel-body"><p>{{rootErrorBody.message ? rootErrorBody.message : rootErrorBody}}</p></div>
+                <div ng-cloak class="panel-body"><p ng-cloak>{{rootErrorBody.message ? rootErrorBody.message : rootErrorBody}}</p></div>
             </div>
         </div>
 
@@ -97,7 +97,9 @@
         <script src="./src/controllers/login-controller.js"></script>
         <script src="./src/controllers/body-controller.js"></script>
         <script src="./src/controllers/explore-controller.js"></script>
-        <script src="./src/controllers/leaderboard-controller.js" charset="utf-8"></script>
+        <script src="./src/controllers/leaderboard-controller.js"></script>
+        <script src="./src/controllers/add-leaderboard-controller.js"></script>
+        <script src="./src/controllers/profile-controller.js"></script>
         <!-- end controllers -->
 
         <!-- begin services -->

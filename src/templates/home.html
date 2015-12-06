@@ -18,7 +18,10 @@
     </div>
 </div>
 
-<h1>My Leaderboards</h1>
+<div class="row">
+    <div class="col-xs-5 h1">My Leaderboards</div>
+    <div class="col-xs-2 h1"><a href="/#/add-leaderboard"><i class="fa fa-plus"></i></a></div>
+</div>
 <div class="leaderboards-container">
     <div class="col-md-4" ng-repeat="leaderboard in vm.leaderboards">
         <leaderboard leaderboard="leaderboard" button-title="vm.buttonTitle" button-action="vm.leaveLeaderboard(leaderboard)"></leaderboard>

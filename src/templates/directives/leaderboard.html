@@ -1,7 +1,10 @@
 <div class="leaderboard panel panel-default">
     <div class="panel-heading">
         <a href="/#/leaderboards/{{leaderboard.id}}">{{leaderboard.get("name")}}</a>
-        <div class="pull-right join-leaderboard" ng-click="buttonAction()" ng-if="buttonTitle">
+        <div class="pull-right leaderboard-link" ng-click="deleteLeaderboard()" ng-if="myLeaderboard">
+            <i class="fa fa-close"></i>&nbsp;Close
+        </div>
+        <div class="pull-right leaderboard-link text-center col-xs-4" ng-click="buttonAction()" ng-if="buttonTitle">
             <i class="fa fa-mail-forward"></i>&nbsp;{{buttonTitle}}
         </div>
     </div>
@@ -16,7 +19,7 @@
 
         <div class="participants-container">
             <div class="participant row" ng-repeat="participant in participants">
-                <participant participant="participant" index="$index+1" what="fuck"></participant>
+                <participant participant="participant" index="$index+1"></participant>
             </div>
             <div class="participant row" ng-repeat="extra in extras">
                 <participant participant="extra" index="startingIndex+$index+1"></participant>

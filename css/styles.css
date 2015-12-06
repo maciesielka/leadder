@@ -155,11 +155,11 @@ img.background-image {
     bottom: 0;
 }
 
-.join-leaderboard {
+.leaderboard-link {
     cursor: pointer;
 }
 
-.join-leaderboard:hover {
+.leaderboard-link:hover {
     font-weight: 600;
     text-decoration: underline;
 }

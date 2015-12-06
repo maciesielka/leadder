@@ -55,6 +55,40 @@ angular
                     }
                 }
             })
+            .when("/add-leaderboard", {
+                templateUrl: "/src/templates/add-leaderboard.html",
+                controller: "AddLeaderboardController",
+                controllerAs: "vm"
+            })
+            .when("/users/:id", {
+                templateUrl: "/src/templates/profile.html",
+                controller: "ProfileController",
+                controllerAs: "vm",
+                resolve: {
+                    user: function($route, ParseService) {
+
+                        var query = new Parse.Query(Parse.User);
+                        return query
+                                .get($route.current.params.id);
+                    },
+
+                    profiles: function($route, ParseService) {
+                        var query = new Parse.Query(Parse.User);
+                        return query.get($route.current.params.id).then(function(user) {
+                            return ParseService.getUserPlayerProfiles(user);
+                        });
+                    },
+
+                    matches: function($route, ParseService) {
+                        var promise = new Parse.Promise();
+
+                        var query = new Parse.Query(Parse.User);
+                        return query.get($route.current.params.id).then(function(user) {
+                            return ParseService.getMatchesForUser(user);
+                        });
+                    }
+                }
+            })
             .otherwise("/login");
     })
     .run(function($rootScope, $location) {

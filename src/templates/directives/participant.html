@@ -14,7 +14,7 @@
         <img src="/img/avatar.png" />
     </div>
     <div class="name-container vertical-center">
-        <div class="name">{{participant.get("user").get("fullName")}}</div>
+        <div class="name"><a href="/#/users/{{participant.get('user').id}}">{{participant.get("user").get("fullName")}}</div>
         <div class="username">@{{participant.get("user").get("username")}}</div>
     </div>
 </div>
