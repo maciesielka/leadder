@@ -27,11 +27,12 @@ angular
         };
 
         var respondToApproval = function(approval, response) {
-            $rootScope.rootLoading = true;
+            $rootScope.setRootLoading(true);
             ParseService.respondToApproval(approval, response).then(function() {
-                $rootScope.rootLoading = false;
+                $rootScope.setRootLoading(false);
                 refreshData();
             }, function(error) {
+                $rootScope.setRootLoading(false);
                 console.error(error);
             });
         };
@@ -67,14 +68,14 @@ angular
 
         vm.buttonTitle = "Leave";
         vm.leaveLeaderboard = function(leaderboard) {
-            $rootScope.rootLoading = true;
+            $rootScope.setRootLoading(true);
             ParseService.removeSelfFromLeaderboard(leaderboard).then(function() {
                 return refreshData();
             }).then(function() {
-                $rootScope.rootLoading = false;
+                $rootScope.setRootLoading(false);
             }, function(error) {
                 console.error(error);
-                $rootScope.rootLoading = false;
+                $rootScope.setRootLoading(false);
             });
         };
     });

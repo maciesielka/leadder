@@ -14,9 +14,7 @@
     "normalize": "^0.3.1",
     "normalize-css": "^2.3.1",
     "parse": "^1.6.8",
-    "parse-mock": "^1.1.4",
-    "phantomjs": "^1.9.18",
-    "sinon": "^1.17.2"
+    "phantomjs": "^1.9.18"
   },
   "scripts": {
     "test": "./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
