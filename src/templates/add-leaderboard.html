@@ -1,0 +1,22 @@
+<form class="col-md-6" ng-submit="vm.submit()">
+    <h1>Add New Leaderboard</h1>
+    <div ng-if="vm.error" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span>Error:</span>
+        {{vm.error}}
+    </div>
+    <div class="form-group">
+        <label for="name">Leaderboard Name: </label>
+        <input class="form-control" ng-model="vm.name" type="text" name="name" value="">
+    </div>
+    <div class="form-group">
+        <label for="K">Easiness</label>
+        <input data-highlight="true" data-show-value="true" data-popup-enabled="true" type="range" ng-model="vm.K" name="K" min="1" max="200" value="100">
+        <div class="subtitle">
+            *the higher the value, the easier it is to move up and down in the rankings
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-default" name="submit">Add Leaderboard</button>
+    </div>
+</form>

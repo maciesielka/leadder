@@ -1,0 +1,34 @@
+<div class="profile-container">
+    <div class="info-container">
+        <div class="row">
+            <div class="name col-md-6 h1">{{vm.user.get("fullName")}}</div>
+            <div class="num-profiles col-md-6 text-right h3">Plays in {{vm.profiles.length}} leaderboard{{vm.profiles.length > 1 ? "s" : ""}}</div>
+        </div>
+        <div class="row">
+            <div class="username col-md-6 h4">@{{vm.user.get("username")}}</div>
+            <div class="num-wins col-md-6 text-right h5">{{vm.numWins}} win{{vm.numWins > 1 ? "s" : ""}}</div>
+        </div>
+    </div>
+    <div class="table-fluid panel panel-default">
+        <div class="panel-heading"><h4>Match History</h4></div>
+        <table class="panel-body table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Leaderboard</th>
+                    <th>Opponent</th>
+                    <th>Result</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="match in vm.matches" ng-if="match.get('player1').get('user').get('fullName') && match.get('player2').get('user').get('fullName')">
+                    <td><a href="/#/leaderboards/{{match.get('player1').get('leaderboard').id}}">{{match.get("player1").get("leaderboard").get("name")}}</a></td>
+                    <td><a href="/#/users/{{match.get('player1').get('user').id === vm.user.id ? match.get('player2').get('user').id : match.get('player1').get('user').id }}">{{match.get("player1").get("user").id === vm.user.id ? match.get("player2").get("user").get("fullName") : match.get("player1").get("user").get("fullName")}}</a>
+                    </td>
+                    <td>{{match.get("player1").get("user").id === vm.user.id ? "W" : "L"}}</td>
+                    <td>{{match.get("updatedAt") | readableDate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
